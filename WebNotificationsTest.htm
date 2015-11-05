@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Web Notifications</title>
+ 
+<script type="text/javascript" src="WebNotifications.js"></script>
+<script type="text/javascript">
+    var n = 1;
+
+    function showNotification() {
+        if (WebNotifications.areSupported()){
+            if (WebNotifications.currentPermission() === WebNotifications.permissions.granted) {
+                var notif = WebNotifications.new('campusMVP.net notification ' + n, 'This is an event requiring your attention!\n Event #' + n, '/campusmvp-icon.png', null, 3000);
+                //handle different events
+                notif.addEventListener("show", Notification_OnEvent);
+                notif.addEventListener("click", Notification_OnEvent);
+                notif.addEventListener("close", Notification_OnEvent);
+                n++;       
+            }   
+        }
+    }
+
+    function Notification_OnEvent(event) {
+        //A reference to the Notification object
+        var notif = event.currentTarget;
+        document.getElementById("msgs").innerHTML += "<br>Notification <strong>'" + notif.title + "'</strong> received event '" + event.type + "' at " + new Date().toLocaleString();
+    }
+</script>
+</head>
+<body>
+    <input type="button" value="Ask for permission to show notifications" onclick="WebNotifications.askForPermission();" />
+    <br />
+    <input type="button" value="Show sample notification" onclick="showNotification();" />
+    <div id="msgs" style="color:red;font-size:small;margin-top:20px;"></div>
+</body>
+</html>
