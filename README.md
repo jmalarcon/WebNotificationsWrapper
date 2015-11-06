@@ -101,5 +101,11 @@ WebNotifications.fire('campusMVP.net notification',
    'This is an event requiring your attention!', 
    '/campusmvp-icon.png', null, 3000);
 ```
+##Web Notifications API Detailed Explanations
+You can find an article I wrote about using the "raw" Web Notifications API here:
+
+https://medium.com/@jm_alarcon/how-to-show-notifications-from-the-browser-with-html5-16795fb9669f
+
+The you'll find all the details of using this API without resorting to any library. It can be helpful to better understand what's under the hood.
 
 Enjoy!
